@@ -1,0 +1,9 @@
+.error-message-container {
+  padding: 2rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.error-message-container .MuiAlert-root {
+  width: 100%;
+}
