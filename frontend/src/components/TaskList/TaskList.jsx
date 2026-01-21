@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Container, Typography, Box } from '@mui/material';
 import { useTasks } from '../../hooks/useTasks';
 import TaskItem from '../TaskItem';
@@ -17,8 +17,15 @@ import './TaskList.css';
  * - Handle loading and error states
  * - Use modern React patterns (hooks, functional components)
  */
-const TaskList = () => {
+const TaskList = ({ refetchRef }) => {
   const { tasks, loading, error, refetch } = useTasks();
+
+  // Expose refetch function to parent component via ref
+  useEffect(() => {
+    if (refetchRef) {
+      refetchRef.current = refetch;
+    }
+  }, [refetch, refetchRef]);
 
   // Loading state
   if (loading) {

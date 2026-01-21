@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
+import TaskForm from './components/TaskForm';
 import TaskList from './components/TaskList';
 import './App.css';
 
@@ -20,6 +21,15 @@ const theme = createTheme({
 });
 
 function App() {
+  const taskListRefetchRef = useRef(null);
+
+  // Handle task creation - refresh task list
+  const handleTaskCreated = () => {
+    if (taskListRefetchRef.current) {
+      taskListRefetchRef.current();
+    }
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -30,13 +40,14 @@ function App() {
         </header>
         
         <main className="app-main">
+          {/* Task 2: TaskForm component */}
+          <TaskForm onTaskCreated={handleTaskCreated} />
+          
           {/* Task 1: TaskList component */}
-          <TaskList />
+          <TaskList refetchRef={taskListRefetchRef} />
           
           {/* 
-            Future tasks will be integrated here:
-            - Task 2: TaskForm component (will be added above TaskList)
-            - Task 3: Filtering and status management (will be integrated into TaskList)
+            Task 3: Filtering and status management (will be integrated into TaskList)
           */}
         </main>
       </div>
