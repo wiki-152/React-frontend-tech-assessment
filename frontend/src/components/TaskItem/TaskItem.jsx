@@ -161,18 +161,12 @@ const TaskItem = ({ task, onStatusUpdate }) => {
   return (
     <Card 
       className={`task-item ${overdue ? 'task-item-overdue' : ''} task-item-status-${status}`}
-      elevation={2}
+      elevation={0}
       sx={{ 
         height: '100%',
         display: 'flex',
         flexDirection: 'column',
-        transition: 'transform 0.2s, box-shadow 0.2s',
-        borderLeft: `4px solid ${getStatusBorderColor(status)}`,
         backgroundColor: getCardBgColor(status),
-        '&:hover': {
-          transform: 'translateY(-2px)',
-          boxShadow: 4
-        }
       }}
     >
       <CardContent sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>

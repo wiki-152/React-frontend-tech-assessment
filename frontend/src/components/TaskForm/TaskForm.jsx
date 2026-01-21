@@ -186,6 +186,21 @@ const TaskForm = ({ onTaskCreated }) => {
                   error={touched.priority && errors.priority.length > 0}
                   aria-invalid={touched.priority && errors.priority.length > 0}
                   aria-describedby={touched.priority && errors.priority.length > 0 ? 'priority-error' : undefined}
+                  renderValue={(value) => {
+                    const labels = {
+                      'low': 'Low',
+                      'medium': 'Medium',
+                      'high': 'High'
+                    };
+                    return labels[value] || '';
+                  }}
+                  sx={{
+                    width: '100%',
+                    '& .MuiSelect-select': {
+                      width: '100%',
+                      minWidth: '120px',
+                    }
+                  }}
                 >
                   <MenuItem value="low">Low</MenuItem>
                   <MenuItem value="medium">Medium</MenuItem>

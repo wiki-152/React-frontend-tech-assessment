@@ -1,9 +1,30 @@
 .error-message-container {
-  padding: 2rem;
+  padding: var(--spacing-xl);
   max-width: 600px;
   margin: 0 auto;
+  animation: slideIn var(--transition-base);
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .error-message-container .MuiAlert-root {
   width: 100%;
+  border-radius: 0;
+  border: 2px solid var(--color-accent-red);
+  font-weight: var(--font-weight-medium);
+}
+
+.error-message-container .MuiAlert-root .MuiAlert-title {
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
 }
