@@ -1,14 +1,79 @@
 .task-form-container {
-  padding: 2rem 1rem;
+  padding: var(--spacing-xl) var(--spacing-md);
+  animation: fadeIn var(--transition-base);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .task-form-paper {
-  padding: 2rem;
-  border-radius: 8px;
+  padding: var(--spacing-xl);
+  background-color: var(--color-bg-primary);
+  border: 2px solid var(--color-border);
+  position: relative;
+  transition: box-shadow var(--transition-base);
+}
+
+.task-form-paper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background-color: var(--color-text-primary);
+}
+
+.task-form-paper:hover {
+  box-shadow: var(--shadow-lg);
 }
 
 .task-form-header {
-  margin-bottom: 2rem;
+  margin-bottom: var(--spacing-xl);
+  padding-bottom: var(--spacing-md);
+  border-bottom: 2px solid var(--color-border-light);
+}
+
+.task-form-header h2 {
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-2xl);
+  margin-bottom: var(--spacing-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+/* Fix Select dropdown width */
+.task-form-paper .MuiFormControl-root {
+  width: 100%;
+}
+
+.task-form-paper .MuiSelect-select {
+  min-width: 120px !important;
+  width: 100% !important;
+  padding-right: 32px !important;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.task-form-paper .MuiSelect-root {
+  width: 100%;
+}
+
+/* Ensure MenuItem text is fully visible */
+.task-form-paper .MuiMenuItem-root {
+  min-width: 120px;
+  white-space: nowrap;
+  overflow: visible;
+  text-overflow: clip;
 }
 
 /* Screen reader only class for accessibility */
@@ -27,28 +92,28 @@
 /* Responsive adjustments */
 @media (max-width: 600px) {
   .task-form-container {
-    padding: 1rem 0.5rem;
+    padding: var(--spacing-md) var(--spacing-sm);
   }
   
   .task-form-paper {
-    padding: 1.5rem;
+    padding: var(--spacing-lg);
   }
   
   .task-form-header {
-    margin-bottom: 1.5rem;
+    margin-bottom: var(--spacing-lg);
   }
   
   .task-form-header h2 {
-    font-size: 1.5rem;
+    font-size: var(--font-size-xl);
   }
 }
 
 @media (min-width: 600px) and (max-width: 960px) {
   .task-form-container {
-    padding: 1.5rem;
+    padding: var(--spacing-lg);
   }
   
   .task-form-paper {
-    padding: 1.75rem;
+    padding: var(--spacing-xl);
   }
 }

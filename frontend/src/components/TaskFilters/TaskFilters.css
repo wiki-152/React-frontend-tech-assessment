@@ -1,15 +1,35 @@
 .task-filters-container {
-  margin-bottom: 2rem;
-  padding: 1.5rem;
-  background-color: #f8f9fa;
-  border-radius: 8px;
-  border: 1px solid #e9ecef;
+  margin-bottom: var(--spacing-xl);
+  padding: var(--spacing-lg);
+  background-color: var(--color-bg-secondary);
+  border-radius: 0;
+  border: 2px solid var(--color-border);
+  position: relative;
+}
+
+.task-filters-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background-color: var(--color-text-primary);
+}
+
+.task-filters-container h6 {
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--spacing-md);
+  color: var(--color-text-primary);
 }
 
 /* Responsive adjustments */
 @media (max-width: 600px) {
   .task-filters-container {
-    padding: 1rem;
-    margin-bottom: 1.5rem;
+    padding: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
   }
 }
