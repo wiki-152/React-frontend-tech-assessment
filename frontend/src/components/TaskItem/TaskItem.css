@@ -1,33 +1,46 @@
 .task-item {
-  border-radius: 8px;
-  overflow: hidden;
+  border-radius: 0;
+  overflow: visible;
   height: 100%;
   display: flex;
   flex-direction: column;
   width: 100%;
+  border: 2px solid var(--color-border);
+  background-color: var(--color-bg-primary);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
+  position: relative;
+}
+
+.task-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 4px 4px 0 0 var(--color-text-primary);
+  border-color: var(--color-text-primary);
 }
 
 .task-item-overdue {
-  border-left: 4px solid #d32f2f !important;
+  border-left: 6px solid var(--color-accent-red) !important;
 }
 
-/* Status-specific visual indicators - colored left border */
+/* Status-specific visual indicators - brutalist colored left border */
 .task-item-status-pending {
-  border-left: 4px solid #9e9e9e;
+  border-left: 6px solid var(--color-accent-gray);
 }
 
 .task-item-status-in-progress {
-  border-left: 4px solid #1976d2;
+  border-left: 6px solid var(--color-accent-blue);
 }
 
 .task-item-status-completed {
-  border-left: 4px solid #2e7d32;
+  border-left: 6px solid var(--color-accent-green);
 }
 
 .task-item-header {
   min-height: 32px;
   display: flex;
-  gap: 0.5rem;
+  gap: var(--spacing-sm);
+  padding-bottom: var(--spacing-sm);
+  border-bottom: 1px solid var(--color-border-light);
+  margin-bottom: var(--spacing-sm);
 }
 
 .task-item-title {
@@ -38,6 +51,10 @@
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   overflow: hidden;
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-lg);
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
 }
 
 .task-item-description {
@@ -49,34 +66,50 @@
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
   overflow: hidden;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-base);
 }
 
 .task-item-due-date {
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
-  padding-top: 0.5rem;
+  border-top: 2px solid var(--color-border-light);
+  padding-top: var(--spacing-sm);
   margin-top: auto;
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
 }
 
 .task-item-due-date-overdue {
-  border-top-color: rgba(211, 47, 47, 0.3);
+  border-top-color: var(--color-accent-red);
+  color: var(--color-accent-red);
 }
 
 .task-item-status-clickable {
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
   position: relative;
   opacity: 1 !important;
 }
 
 .task-item-status-clickable:hover {
-  transform: scale(1.05);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transform: scale(1.08);
+  box-shadow: 2px 2px 0 0 var(--color-text-primary);
   opacity: 1 !important;
+}
+
+.task-item-status-clickable:active {
+  transform: scale(1.02);
 }
 
 /* Ensure chips are always fully visible - override Material-UI defaults */
 .task-item-header .MuiChip-root {
   opacity: 1 !important;
+  border-radius: 0;
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  font-size: var(--font-size-xs);
 }
 
 .task-item-header .MuiChip-icon {
@@ -98,17 +131,17 @@
 
 .task-item-status-chip-in-progress {
   opacity: 1 !important;
-  color: #1976d2 !important;
+  color: var(--color-accent-blue) !important;
   background-color: rgba(25, 118, 210, 0.15) !important;
 }
 
 .task-item-status-chip-in-progress .MuiChip-icon {
-  color: #1976d2 !important;
+  color: var(--color-accent-blue) !important;
   opacity: 1 !important;
 }
 
 .task-item-status-chip-in-progress .MuiChip-label {
-  color: #1976d2 !important;
+  color: var(--color-accent-blue) !important;
   opacity: 1 !important;
 }
 
@@ -121,10 +154,11 @@
   opacity: 1 !important;
   min-width: 100px !important;
   width: 100px !important;
+  border-radius: 0 !important;
 }
 
 .task-item-status-clickable:focus {
-  outline: 2px solid #1976d2;
+  outline: 3px solid var(--color-text-primary);
   outline-offset: 2px;
 }
 
@@ -133,15 +167,20 @@
   .task-item-header {
     flex-direction: column;
     align-items: flex-start;
-    gap: 0.25rem;
+    gap: var(--spacing-xs);
   }
   
   .task-item-title {
-    font-size: 1.1rem;
+    font-size: var(--font-size-base);
   }
   
   .task-item-description {
-    font-size: 0.875rem;
+    font-size: var(--font-size-sm);
+  }
+  
+  .task-item:hover {
+    transform: none;
+    box-shadow: 2px 2px 0 0 var(--color-text-primary);
   }
 }
 
