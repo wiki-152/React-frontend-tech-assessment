@@ -8,7 +8,20 @@
 }
 
 .task-item-overdue {
-  border-left: 4px solid #d32f2f;
+  border-left: 4px solid #d32f2f !important;
+}
+
+/* Status-specific visual indicators - colored left border */
+.task-item-status-pending {
+  border-left: 4px solid #9e9e9e;
+}
+
+.task-item-status-in-progress {
+  border-left: 4px solid #1976d2;
+}
+
+.task-item-status-completed {
+  border-left: 4px solid #2e7d32;
 }
 
 .task-item-header {
@@ -46,6 +59,73 @@
 
 .task-item-due-date-overdue {
   border-top-color: rgba(211, 47, 47, 0.3);
+}
+
+.task-item-status-clickable {
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+  opacity: 1 !important;
+}
+
+.task-item-status-clickable:hover {
+  transform: scale(1.05);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  opacity: 1 !important;
+}
+
+/* Ensure chips are always fully visible - override Material-UI defaults */
+.task-item-header .MuiChip-root {
+  opacity: 1 !important;
+}
+
+.task-item-header .MuiChip-icon {
+  opacity: 1 !important;
+}
+
+.task-item-header .MuiChip-label {
+  opacity: 1 !important;
+}
+
+/* Status chip specific styles */
+.task-item-status-chip {
+  opacity: 1 !important;
+}
+
+.task-item-status-chip-pending {
+  opacity: 1 !important;
+}
+
+.task-item-status-chip-in-progress {
+  opacity: 1 !important;
+  color: #1976d2 !important;
+  background-color: rgba(25, 118, 210, 0.15) !important;
+}
+
+.task-item-status-chip-in-progress .MuiChip-icon {
+  color: #1976d2 !important;
+  opacity: 1 !important;
+}
+
+.task-item-status-chip-in-progress .MuiChip-label {
+  color: #1976d2 !important;
+  opacity: 1 !important;
+}
+
+.task-item-status-chip-completed {
+  opacity: 1 !important;
+}
+
+/* Priority chip - equal width */
+.task-item-priority-chip {
+  opacity: 1 !important;
+  min-width: 100px !important;
+  width: 100px !important;
+}
+
+.task-item-status-clickable:focus {
+  outline: 2px solid #1976d2;
+  outline-offset: 2px;
 }
 
 /* Responsive adjustments */

@@ -4,16 +4,18 @@ import { validateTasksArray } from '../utils/validation';
 
 /**
  * Custom hook for fetching and managing tasks
- * Handles loading, error states, and data fetching
- * @returns {Object} { tasks, loading, error, refetch }
+ * Handles loading, error states, and data fetching with filtering support
+ * @param {Object} filters - Filter options { status?: string, priority?: string }
+ * @returns {Object} { tasks, loading, error, refetch, total }
  */
-export const useTasks = () => {
+export const useTasks = (filters = { status: null, priority: null }) => {
   const [tasks, setTasks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [total, setTotal] = useState(0);
 
   /**
-   * Fetch tasks from the API
+   * Fetch tasks from the API with optional filters
    * @param {boolean} checkMounted - Optional function to check if component is still mounted
    */
   const loadTasks = useCallback(async (checkMounted = null) => {
@@ -21,7 +23,12 @@ export const useTasks = () => {
     setError(null);
 
     try {
-      const response = await fetchTasks();
+      // Build filter options (only include non-null filters)
+      const filterOptions = {};
+      if (filters.status) filterOptions.status = filters.status;
+      if (filters.priority) filterOptions.priority = filters.priority;
+      
+      const response = await fetchTasks(filterOptions);
       
       // Check if component unmounted before updating state
       if (checkMounted && !checkMounted()) return;
@@ -43,6 +50,7 @@ export const useTasks = () => {
       if (checkMounted && !checkMounted()) return;
       
       setTasks(validation.validTasks || []);
+      setTotal(response.total || validation.validTasks?.length || 0);
       setError(null);
     } catch (err) {
       // Check if component unmounted before updating state
@@ -60,7 +68,7 @@ export const useTasks = () => {
         setLoading(false);
       }
     }
-  }, []);
+  }, [filters]);
 
   /**
    * Refetch tasks (useful after creating/updating tasks)
@@ -69,7 +77,7 @@ export const useTasks = () => {
     loadTasks();
   }, [loadTasks]);
 
-  // Fetch tasks on mount
+  // Fetch tasks on mount and when filters change
   useEffect(() => {
     let isMounted = true;
 
@@ -86,6 +94,7 @@ export const useTasks = () => {
     tasks,
     loading,
     error,
-    refetch
+    refetch,
+    total
   };
 };

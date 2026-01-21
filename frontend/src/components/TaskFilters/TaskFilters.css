@@ -1,0 +1,15 @@
+.task-filters-container {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .task-filters-container {
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+  }
+}
